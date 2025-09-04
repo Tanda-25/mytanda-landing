@@ -1,31 +1,311 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- Essentials -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tandaly LLC — Group Savings & Coordination</title>
-  <meta name="description" content="Tools for savings groups to track contributions, schedule turns, and manage payouts securely." />
+  <title>Tanda — Group Savings, Made Simple</title>
+  <meta name="description" content="Tanda helps families and communities coordinate savings circles — track contributions, schedule turns, and manage payouts with clarity." />
+  <link rel="canonical" href="https://www.mytanda.biz/" />
+  <meta name="theme-color" content="#0b1220" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Meta / Sharing -->
   <meta name="facebook-domain-verification" content="wegeo949yzvx92swu7bgbkrfookkzt" />
-  <meta property="og:title" content="Tandaly LLC — Group Savings & Coordination" />
-  <meta property="og:description" content="Tools for savings groups to track contributions, schedule turns, and manage payouts securely." />
+  <meta property="og:title" content="Tanda — Group Savings, Made Simple" />
+  <meta property="og:description" content="Coordinate savings circles with transparent tracking and clear schedules." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.mytanda.biz/" />
+  <meta property="og:site_name" content="Tanda" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Tiny SVG favicon (no external files) -->
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0" x2="1" y1="1"><stop stop-color="%235cc8ff"/><stop offset="1" stop-color="%2366f0c9"/></linearGradient></defs><rect width="100" height="100" rx="18" fill="url(%23g)"/><path d="M25 60h50v10H25zM25 30h50v10H25z" fill="%2304101e"/></svg>' />
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Tandaly LLC",
+    "url": "https://www.mytanda.biz/",
+    "brand": "Tanda",
+    "email": "hello@mytanda.biz"
+  }
+  </script>
+
+  <!-- Styles (no frameworks, fully responsive) -->
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#0f172a;}
-    .wrap{max-width:960px;margin:0 auto;padding:48px 24px;}
-    h1{font-size:2rem;margin:12px 0 8px;}
-    p.lead{font-size:1.125rem;color:#334155;margin:0 0 20px;}
-    a.cta{display:inline-block;padding:12px 18px;border-radius:10px;background:#0ea5e9;color:#fff;text-decoration:none}
-    footer{margin-top:40px;font-size:.9rem;color:#64748b}
+    :root{
+      --bg:#0b1220; --panel:#0f172a; --text:#e6f1ff; --muted:#a5b4cc;
+      --line:#203049; --brand:#5cc8ff; --brand2:#66f0c9; --ink:#04101e;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% -10%, #14325a 0%, transparent 60%),
+        radial-gradient(900px 600px at 100% 0%, #0b3d3a 0%, transparent 55%),
+        var(--bg);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit}
+    .container{max-width:1120px;margin:0 auto;padding:0 20px}
+    .skip{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip:focus{left:12px;top:12px;width:auto;height:auto;background:#fff;color:#000;padding:6px 10px;border-radius:6px}
+
+    /* Nav */
+    .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+      background:color-mix(in srgb, var(--bg) 78%, transparent)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+    .logo{
+      width:28px;height:28px;border-radius:8px;
+      background:conic-gradient(from 180deg at 50% 50%, var(--brand), var(--brand2), var(--brand));
+      box-shadow:0 0 0 2px #0d223d inset, 0 8px 20px rgba(92,200,255,.25);
+    }
+    .links{display:flex;gap:18px;align-items:center}
+    .links a{color:var(--muted);text-decoration:none;font-size:14px}
+    .links a:hover{color:var(--text)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;text-decoration:none;
+      font-weight:700;font-size:14px;color:var(--ink);
+      background:linear-gradient(90deg,var(--brand),var(--brand2));
+      box-shadow:0 10px 22px rgba(92,200,255,.20)}
+    .btn.secondary{background:#16243f;color:var(--text);border:1px solid var(--line);box-shadow:none}
+    .hamburger{display:none;background:none;border:0;color:var(--text);font-size:22px}
+
+    /* Hero */
+    header.hero{padding:64px 0 24px}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;
+      color:var(--ink);background:linear-gradient(90deg,var(--brand),var(--brand2));font-weight:800;font-size:12px}
+    h1{font-size:42px;line-height:1.06;margin:16px 0 12px}
+    .lead{color:var(--muted);font-size:18px;line-height:1.6;margin:0 0 18px}
+    .mini{font-size:12px;color:var(--muted);margin-top:6px}
+    .hero-card{background:linear-gradient(180deg, rgba(22,35,63,.9), rgba(10,17,34,.9));
+      border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 20px 60px rgba(4,16,30,.4)}
+    .spark{
+      height:240px;border-radius:12px;border:1px solid var(--line);
+      background:
+        radial-gradient(170px 120px at 30% 30%, rgba(102,240,201,.25), transparent 60%),
+        radial-gradient(180px 140px at 70% 60%, rgba(92,200,255,.25), transparent 60%),
+        #0f172a;
+      display:grid;place-items:center;text-align:center;color:var(--muted);font-size:13px;padding:16px
+    }
+
+    /* Sections */
+    section{padding:56px 0;border-top:1px solid var(--line)}
+    .title{font-size:24px;margin:0 0 8px}
+    .desc{color:var(--muted);margin:0 0 24px}
+    .grid-3{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
+    .card{background:rgba(15,23,42,.6);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .card h3{margin:0 0 6px;font-size:18px}
+    .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+    .icon{width:28px;height:28px;border-radius:8px;display:inline-grid;place-items:center;
+      background:#102847;color:var(--brand);margin-bottom:10px;border:1px solid #17345c}
+
+    .steps{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+    .step{display:flex;gap:14px;align-items:flex-start}
+    .badge{min-width:26px;height:26px;border-radius:999px;background:var(--brand);color:var(--ink);
+      display:grid;place-items:center;font-weight:800;margin-top:3px}
+
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+
+    /* Testimonials (tiny) */
+    .quotes{display:grid;gap:14px;grid-template-columns:repeat(3,1fr)}
+    .quote{background:#0f1629;border:1px solid var(--line);border-radius:12px;padding:14px}
+    .quote p{margin:0;color:var(--muted);font-size:14px}
+    .quote .by{margin-top:8px;font-size:12px;color:#7f8baa}
+
+    /* Footer */
+    footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:14px}
+    footer a{text-decoration:underline}
+
+    /* Responsive */
+    @media (max-width: 960px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr}
+      .quotes{grid-template-columns:1fr}
+      .hamburger{display:block}
+      .links{display:none}
+      .links.open{display:flex;flex-direction:column;gap:12px;padding:12px 0}
+      h1{font-size:34px}
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Group Savings, Made Simple</h1>
-    <p class="lead">Tandaly helps families and communities coordinate savings circles—track contributions, schedule turns, and manage payouts with clarity.</p>
-    <p><a class="cta" href="https://app.mytanda.biz" rel="noopener">Open the App</a></p>
-    <footer>© <span id="y"></span> Tandaly LLC • <a href="mailto:hello@mytanda.biz">hello@mytanda.biz</a></footer>
-  </div>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Nav -->
+  <nav class="nav" aria-label="Primary">
+    <div class="container nav-inner">
+      <div class="brand" aria-label="Tanda">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Tanda</span>
+      </div>
+      <button class="hamburger" id="navToggle" aria-expanded="false" aria-controls="navLinks">☰</button>
+      <div class="links" id="navLinks">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn secondary" href="mailto:hello@mytanda.biz">Contact</a>
+        <a class="btn" href="https://app.mytanda.biz" rel="noopener">Open the App</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Group Savings • Rotating Credit • Community Funds</span>
+        <h1>Group Savings, Made Simple</h1>
+        <p class="lead">Tanda helps families and communities coordinate savings circles — track contributions, schedule turns, and manage payouts with clarity.</p>
+        <p><strong>Operated by Tandaly LLC</strong></p>
+        <div class="cta-row" role="group" aria-label="Primary actions">
+          <a class="btn" href="https://app.mytanda.biz" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13 5l7 7-7 7v-4H4v-6h9V5z"/></svg>
+            Open the App
+          </a>
+          <a class="btn secondary" href="mailto:hello@mytanda.biz?subject=Tanda%20inquiry">Talk to us</a>
+        </div>
+        <p class="mini">We provide coordination tools only — we do not hold funds, lend money, or promise returns.</p>
+      </div>
+      <div class="hero-card" aria-hidden="true">
+        <div class="spark">
+          <div>
+            <strong>At-a-glance dashboard</strong><br/>
+            See members, contributions, next turn, and payout status — all in one place.
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Features -->
+    <section id="features" aria-labelledby="features-title">
+      <div class="container">
+        <h2 class="title" id="features-title">What you can do with Tanda</h2>
+        <p class="desc">Transparent tracking, clear schedules, and private access controls for your circle.</p>
+        <div class="grid-3">
+          <div class="card">
+            <div class="icon">✓</div>
+            <h3>Contribution Tracking</h3>
+            <p>See who’s paid, what’s due, and totals per cycle — exportable for records.</p>
+          </div>
+          <div class="card">
+            <div class="icon">⏰</div>
+            <h3>Turn Scheduling</h3>
+            <p>Automate rotation order and reminders so no one misses their turn.</p>
+          </div>
+          <div class="card">
+            <div class="icon">🔐</div>
+            <h3>Privacy & Roles</h3>
+            <p>Organizer, treasurer, member — set access by role and protect sensitive info.</p>
+          </div>
+          <div class="card">
+            <div class="icon">📣</div>
+            <h3>Reminders</h3>
+            <p>Share summaries and nudges to keep everyone aligned.</p>
+          </div>
+          <div class="card">
+            <div class="icon">🌎</div>
+            <h3>Multi-group Support</h3>
+            <p>Run multiple circles at once with independent settings and rosters.</p>
+          </div>
+          <div class="card">
+            <div class="icon">📄</div>
+            <h3>Reports & Exports</h3>
+            <p>Download CSV summaries for reconciliation or sharing with members.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how" aria-labelledby="how-title">
+      <div class="container">
+        <h2 class="title" id="how-title">How it works</h2>
+        <p class="desc">Get started in minutes — no complicated setup.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="badge">1</div>
+            <div>
+              <strong>Create a circle</strong>
+              <p class="mini">Name it, set a contribution amount and schedule.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="badge">2</div>
+            <div>
+              <strong>Add members</strong>
+              <p class="mini">Invite people with email or a share link.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="badge">3</div>
+            <div>
+              <strong>Track & coordinate</strong>
+              <p class="mini">Tick off contributions, follow the rotation, and view payouts.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social proof (lightweight) -->
+    <section aria-labelledby="test-title">
+      <div class="container">
+        <h2 class="title" id="test-title">What organizers say</h2>
+        <p class="desc">Clear schedules and transparent tracking make coordination easier.</p>
+        <div class="quotes">
+          <div class="quote"><p>“Everyone sees the rotation, so there’s no confusion.”</p><div class="by">— Community organizer</div></div>
+          <div class="quote"><p>“We track contributions without spreadsheets.”</p><div class="by">— Family coordinator</div></div>
+          <div class="quote"><p>“Reminders keep our circle on time.”</p><div class="by">— Treasurer</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section aria-labelledby="cta-title">
+      <div class="container" style="text-align:center">
+        <h2 class="title" id="cta-title">Ready to simplify your savings circle?</h2>
+        <p class="desc">Start coordinating today with clear schedules and transparent tracking.</p>
+        <div class="cta-row" style="justify-content:center">
+          <a class="btn" href="https://app.mytanda.biz" rel="noopener">Open the App</a>
+          <a class="btn secondary" href="mailto:hello@mytanda.biz?subject=Tanda%20inquiry">Contact us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+        <div>© <span id="y"></span> Tandaly LLC • <a href="mailto:hello@mytanda.biz">hello@mytanda.biz</a></div>
+        <div>
+          <a href="/privacy.html">Privacy</a> • <a href="/terms.html">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year + mobile nav toggle (accessible)
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    if (toggle && links){
+      toggle.addEventListener('click', () => {
+        const open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+    }
+  </script>
 </body>
 </html>
