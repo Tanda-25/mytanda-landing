@@ -134,6 +134,31 @@
       .links.open{display:flex;flex-direction:column;gap:12px;padding:12px 0}
       h1{font-size:34px}
     }
+
+    /* Subtle animated glow in hero card (motion-safe) */
+    .spark{position:relative;overflow:hidden}
+    .spark::before,
+    .spark::after{
+      content:""; position:absolute; inset:-40%;
+      background:
+        radial-gradient(160px 120px at 30% 30%, rgba(102,240,201,.20), transparent 60%),
+        radial-gradient(180px 140px at 70% 60%, rgba(92,200,255,.20), transparent 60%);
+      mix-blend-mode:screen; opacity:.28; filter:blur(0.5px);
+      animation:drift 28s linear infinite;
+    }
+    .spark::after{
+      opacity:.18; animation-duration:40s; animation-direction:reverse;
+    }
+    @keyframes drift{
+      0%   {transform:translate3d(0,0,0) rotate(0)}
+      50%  {transform:translate3d(2%, -2%, 0) rotate(180deg)}
+      100% {transform:translate3d(0,0,0) rotate(360deg)}
+    }
+    .hero-card:hover{transform:translateY(-1px); transition:transform 180ms ease}
+    @media (prefers-reduced-motion: reduce){
+      .spark::before,.spark::after{animation:none}
+      .hero-card:hover{transform:none}
+    }
   </style>
 </head>
 <body>
@@ -253,6 +278,18 @@
               <p class="mini">Tick off contributions, follow the rotation, and view payouts.</p>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (tiny, matches nav) -->
+    <section id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <h2 class="title" id="faq-title">FAQ</h2>
+        <div class="desc">
+          <p><strong>Is Tanda a bank or lender?</strong><br/>No. We provide coordination tools only — we don’t hold funds, lend money, or promise returns.</p>
+          <p><strong>Who can see my group?</strong><br/>Only invited members. Roles control what each person can see and do.</p>
+          <p><strong>Do you charge fees?</strong><br/>Core features are free for small circles. We plan optional paid features (e.g., advanced reports, priority support). We’ll always notify you before any charges.</p>
         </div>
       </div>
     </section>
